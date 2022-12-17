@@ -48,10 +48,8 @@ router.post("/vote/search", async (ctx) => {
 
 /// 参与
 router.get("/vote/vote-join", async (ctx) => {
-  const rankList = faker.votesList;
   await ctx.render("vote-join", {
-    layout: "vote-page",
-    rankList,
+    layout: false,
   });
 });
 
