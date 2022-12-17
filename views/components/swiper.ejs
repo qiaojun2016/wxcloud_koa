@@ -1,0 +1,36 @@
+<!--幻灯片-->
+
+<script>
+    $(document).ready(function () {
+        var count = 0;
+        $("#slider .swiper-wrapper .swiper-slide").each(function () {
+            ++count;
+        });
+        for (var i = 1; i < count; i++) {
+            $("#banner-" + i).show();
+        }
+        var mySwiper = new Swiper('.swiper-container', {
+            calculateHeight: true,
+            resizeReInit: true,
+            pagination: ".pagination",
+            autoplay: 3000,
+            paginationClickable: true
+        });
+    });
+</script>
+
+<div class="swiper-container" id="slider">
+    <div class="swiper-wrapper" style="width: 640px; height: 622px;">
+        <% swiperData.forEach(function(swiper){ %>
+        <div class="swiper-slide swiper-slide-visible swiper-slide-active" id="banner-0"
+            style="width: 640px; height: 622px;">
+            <a href="<%= swiper.url %>">
+                <img src="<%= swiper.image %>">
+            </a>
+        </div>
+        <% }); %>
+    </div>
+    <div class="pagination">
+        <span class="swiper-pagination-switch swiper-visible-switch swiper-active-switch"></span>
+    </div>
+</div>

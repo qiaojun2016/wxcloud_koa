@@ -1,0 +1,49 @@
+<div class="num_box" style=" background-color:#004EB6;margin-top:10px;">
+    <ul class="num_box_ul">
+        <li>
+            <span class="text">已报名</span>
+            <span>19</span>
+        </li>
+        <li>
+            <span class="text">助力人次</span>
+            <span>78030</span>
+        </li>
+        <li>
+            <span class="text">访问量</span>
+            <span>400813</span>
+        </li>
+    </ul>
+    <script language="JavaScript">
+        var currentDate = new Date();
+        var strEndTime = new Date(1670644800 * 1000);
+        var EndTime = new Date(strEndTime);
+
+        var days = EndTime - currentDate;
+        EndTimeMsg = parseInt(days / 1000);//精确到秒
+
+        function show() {
+            h = Math.floor(EndTimeMsg / 60 / 60);
+            m = Math.floor((EndTimeMsg - h * 60 * 60) / 60);
+            s = Math.floor((EndTimeMsg - h * 60 * 60 - m * 60));
+            document.getElementById("DD").innerHTML = parseInt(h / 24);
+            document.getElementById("HH").innerHTML = h - parseInt(h / 24) * 24;
+            document.getElementById("MM").innerHTML = m;
+            document.getElementById("SS").innerHTML = s;
+            EndTimeMsg--;
+            if (EndTimeMsg < 0) {
+                document.getElementById("DD").innerHTML = "0";
+                document.getElementById("HH").innerHTML = "00";
+                document.getElementById("MM").innerHTML = "00";
+                document.getElementById("SS").innerHTML = "00";;
+            }
+        }
+        setInterval("show()", 1000)
+
+
+    </script>
+    <div
+        style="width:100%;height:30px;line-height:30px;text-align:center;position:relative;margin-bottom:50px;color:#FFFFFF;font-weight:bold; ">
+        距离活动结束还剩:<strong id="DD">0</strong>天 <strong id="HH">00</strong>时 <strong id="MM">00</strong>分
+        <strong id="SS">00</strong>秒
+    </div>
+</div>

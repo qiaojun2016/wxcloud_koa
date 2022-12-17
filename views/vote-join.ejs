@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>报名</title>
+  <!-- 引入 WeUI CDN 链接 -->
+  <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/2.4.0/weui.min.css" />
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.0/dist/browser-image-compression.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="page">
+    <div class="weui-form">
+      <div class="weui-form__text-area">
+        <h2 class="weui-form__title">报名</h2>
+        <div class="weui-form__desc">请认真填写报名信息</div>
+      </div>
+      <div class="weui-form__control-area">
+        <div class="weui-cells__group weui-cells__group_form">
+          <div class="weui-cells__title">参选信息</div>
+          <div class="weui-cells">
+            <!--输入框1-->
+            <label for="js_input" class="weui-cell weui-cell_active">
+              <div class="weui-cell__hd">
+                <span class="weui-label">姓名</span>
+              </div>
+              <div class="weui-cell__bd">
+                <input id="userName" type="text" class="weui-input" placeholder="填写姓名" />
+              </div>
+            </label>
+            <!--输入框1-->
+            <label for="js_input2" class="weui-cell weui-cell_active">
+              <div class="weui-cell__hd">
+                <span class="weui-label">工作单位</span>
+              </div>
+              <div class="weui-cell__bd">
+                <input id="workplace" class="weui-input" name="name" placeholder="填写本人工作单位" />
+              </div>
+            </label>
+            <!--输入框3-->
+            <label for="js_input3" class="weui-cell weui-cell_active">
+              <div class="weui-cell__hd">
+                <span class="weui-label">联系电话</span>
+              </div>
+              <div class="weui-cell__bd">
+                <input id="phone" class="weui-input" placeholder="填写绑定的电话号码" type="number" pattern="[0-9]*" />
+              </div>
+            </label>
+          </div>
+
+          <!--图片上传-->
+
+          <div class="weui-cell weui-cell_uploader">
+            <div class="weui-cell__bd">
+              <div class="weui-uploader">
+                <div class="weui-uploader__hd" role="option"
+                  aria-labelledby="js_uploader_title js_a11y_comma js_uploader_current_num js_uploader_unit js_a11y_comma js_uploader_max_tips js_uploader_max_num js_uploader_unit">
+                  <p id="js_uploader_title" class="weui-uploader__title">图片上传</p>
+                  <div class="weui-uploader__info">
+                    <span id="js_uploader_current_num">0</span>/<span id="js_uploader_max_num">1</span>
+                  </div>
+                  <div id="js_uploader_unit" class="weui-hidden_abs"> &nbsp;张 </div>
+                  <div id="js_uploader_max_tips" class="weui-hidden_abs">可上传</div>
+                </div>
+                <div class="weui-uploader__bd">
+                  <ul class="weui-uploader__files" id="uploaderFiles">
+
+                  </ul>
+                  <div class="weui-uploader__input-box">
+                    <input id="userImage" class="weui-uploader__input" type="file" accept="image/*" multiple />
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--表单页提示，居中对齐 -->
+      <div class="weui-form__tips-area">
+        <p class="weui-form__tips">表单页提示，居中对齐</p>
+      </div>
+      <!--确定按钮 -->
+      <div class="weui-form__opr-area">
+        <a role="button" disabled aria-disabled="true" class="weui-btn weui-btn_primary weui-btn_disabled"
+          href="javascript:" id="showTooltips">提交</a>
+      </div>
+
+      <!--表单页提示，居中对齐 -->
+      <div class="weui-form__tips-area">
+        <p class="weui-form__tips">表单页提示，居中对齐</p>
+      </div>
+
+
+
+      <!--提示信息-->
+      <div role="alert" id="js_toast" style="display: none">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+          <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+          <p class="weui-toast__content">已完成</p>
+        </div>
+      </div>
+
+      <!-- loading toast -->
+      <div role="alert" id="loadingToast" style="display: none;">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+          <i class="weui-loading weui-icon_toast"></i>
+          <p class="weui-toast__content">加载中...</p>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(function () {
+        var $loadingToast = $('#loadingToast');
+        var $toast = $("#js_toast");
+        var $userName = $("#userName");
+        var $phone = $('#phone');
+        var $workplace = $('#workplace');
+        var $userImage = $("#userImage");
+
+
+        /// 用户名修改
+        $userName.on("input", function () {
+          if ($userName.val()) {
+            $("#showTooltips").removeClass("weui-btn_disabled");
+            $("#showTooltips").attr("aria-disabled", "false");
+            $("#showTooltips").removeAttr("disabled");
+          } else {
+            $("#showTooltips").addClass("weui-btn_disabled");
+            $("#showTooltips").addClass("weui-btn_disabled");
+            $("#showTooltips").attr("aria-disabled", "true");
+            $("#showTooltips").addAttr("disabled");
+          }
+        });
+
+        $("#showTooltips").on("click", async function () {
+          if ($(this).hasClass("weui-btn_disabled")) return;
+
+          // toptips的fixed, 如果有`animation`, `position: fixed`不生效
+          $(".page.cell").removeClass("slideIn");
+
+          if ($loadingToast.css('display') != 'none') return;
+          $loadingToast.fadeIn(100);
+          setTimeout(function () {
+            $loadingToast.fadeOut(100);
+          }, 2000);
+
+          // 压缩文件
+          const formData = new FormData();
+          const uploadFile = await compressedFile($userImage[0].files[0]);
+          console.log(uploadFile)
+          formData.append("userImage", uploadFile);
+          formData.append("userName", $userName.val());
+          formData.append("phone", $phone.val());
+          formData.append("workplace", $workplace.val());
+          $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/vote/join",
+            data: formData,
+            processData: false,
+            contentType: false,
+          }).done(function (res) {
+            console.log(JSON.stringify(res))
+            console.log("done!");
+          }).fail(function (res) {
+            console.log("fail!");
+          });
+        });
+
+        //$('.weui-cell').on('click', function(){
+        //  $(this).find('input').trigger('focus');
+        //});
+
+
+
+
+        var tmpl = `
+      <li class="weui-uploader__file" tabindex="0" style="user-select:none;background-image:url(#url#)">
+        <button class="weui-icon-close" style="display:block; background:#ccc;"/>
+      </li>`,
+          $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
+
+          $uploaderFiles = $("#uploaderFiles")
+          ;
+        $userImage.on("change", function (e) {
+          var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
+          for (var i = 0, len = files.length; i < len && i < 1; ++i) {
+            var uploadFile = files[i];
+            if (url) {
+              src = url.createObjectURL(uploadFile);
+            } else {
+              src = e.target.result;
+            }
+            /// 插入选中的图片
+            $uploaderFiles.append($(tmpl.replace('#url#', src)));
+            /// 插入的图片点击事件，包括左上角移除button
+            $("li .weui-icon-close").on('click', function (e) {
+              e.preventDefault();
+              $(this).parent().remove();
+              $(".weui-uploader__input-box").show();
+              $("#js_uploader_current_num").html('0');
+            });
+            /// 只允许添加 1 张图片
+            $(".weui-uploader__input-box").hide();
+            $("#js_uploader_current_num").html('1');
+            /// 对文件进行压缩
+
+          }
+        });
+        var currentImg;
+        $uploaderFiles.on("click", "li", function () {
+          $galleryImg.attr("style", this.getAttribute("style"));
+          $gallery.attr('aria-hidden', 'false');
+          $gallery.attr('aria-modal', 'true');
+          $gallery.fadeIn(100);
+          setTimeout(function () {
+            $galleryImg.attr("tabindex", '-1').trigger('focus');
+          }, 200);
+          currentImg = this;
+        });
+        $gallery.on("click", function () {
+          $gallery.attr('aria-modal', 'false');
+          $gallery.attr('aria-hidden', 'true');
+          $gallery.fadeOut(100);
+          setTimeout(function () {
+            $galleryImg.removeAttr("tabindex");
+          }, 200);
+          currentImg.focus();
+        });
+      });
+      async function compressedFile(imageFile) {
+        function blobToFile(theBlob, fileName) {
+          return new File([theBlob], fileName, { lastModified: new Date().getTime(), type: theBlob.type })
+        }
+        console.log('originalFile instanceof Blob', imageFile instanceof Blob); // true
+        console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+        const options = {
+          maxSizeMB: .1,
+          maxWidthOrHeight: 300,
+          useWebWorker: true
+        }
+        try {
+          const compressedFile = await imageCompression(imageFile, options);
+          console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+          console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+          return blobToFile(compressedFile, imageFile.name);
+        } catch (error) {
+          console.log(error);
+        }
+        return imageFile;
+      }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<div class="pop" id="voting" style="display:none;">
+    <div class="mengceng"></div>
+    <div class="pop_up">
+        <span class="closed close_pop_up">&nbsp;</span>
+        <p class="tit_p" id="voting_title"></p>
+        <p class="tit_txt" id="voting_content"></p>
+    </div>
+</div>
+
+<script>
+    function showVotingResult(title,content) {
+        $('#voting').show();
+        $('#voting_title').html(d.title);
+        $('#voting_content').html(d.msg);
+        setTimeout(function () {
+            $('#voting').hide();
+        }, 2000);
+    }
+</script>

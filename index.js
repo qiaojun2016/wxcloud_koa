@@ -1,7 +1,9 @@
 const Koa = require("koa");
 const Router = require("koa-router");
 const logger = require("koa-logger");
-const bodyParser = require("koa-bodyparser");
+const bodyParser = require("koa-body");
+const serve = require("koa-static");
+const render = require("koa-ejs");
 const fs = require("fs");
 const path = require("path");
 const { init: initDB, Counter } = require("./db");
@@ -43,9 +45,9 @@ router.get("/api/count", async (ctx) => {
   };
 });
 
-router.post('/api/wx/callback', async (ctx) => {
+router.post("/api/wx/callback", async (ctx) => {
   ctx.body = ctx.request.body;
-})
+});
 
 // 小程序调用，获取微信 Open ID
 router.get("/api/wx_openid", async (ctx) => {
@@ -55,15 +57,39 @@ router.get("/api/wx_openid", async (ctx) => {
 });
 
 const app = new Koa();
+const koaBody = bodyParser({
+  formidable: {
+    keepExtensions: true,
+    uploadDir: "./uploads",
+  },
+  multipart: true,
+});
+/// 设置中间件
+app.use(serve(path.join(__dirname, "/public")));
+app.use(serve("./upload"));
 app
   .use(logger())
-  .use(bodyParser())
+  .use(koaBody)
+  .use(serve(path.join(__dirname, "/public")))
+  .use(serve("./upload"))
   .use(router.routes())
+  .use(require('./routes/vote').routes())
   .use(router.allowedMethods());
+
+/// ejs 配置
+render(app, {
+  root: path.join(__dirname, "views"),
+  layout: "index",
+  viewExt: "ejs",
+});
+  
+
+/// 页面
+
 
 const port = process.env.PORT || 80;
 async function bootstrap() {
-  await initDB();
+  //await initDB();
   app.listen(port, () => {
     console.log("启动成功", port);
   });

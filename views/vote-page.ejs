@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+
+    <title>日照市首届“最美市场监管人”评选</title>
+    <link rel="stylesheet" href="/votes/touch.css">
+
+    <meta name="sharecontent" data-msg-tid="5865"
+        data-msg-img="http://cdn.iqiyih5.com/upload/202211/29/202211291658566834.jpg" data-msg-title="日照市首届“最美市场监管人”评选"
+        data-msg-content="" data-msg-callback=""
+        data-line-img="http://cdn.iqiyih5.com/upload/202211/29/202211291658566834.jpg"
+        data-line-title="日照市首届“最美市场监管人”评选" data-line-callback=""
+        data-line-url="http://m11.tm.jtteam.top/members/style5/wx_vote.aspx?id=5865" data-msg-openid=""
+        data-iphone-url="http://m11.tm.jtteam.top/members/style5/wx_vote.aspx?id=5865">
+
+    <script type="text/javascript" src="/votes/jweixin-1.2.0.js"></script>
+
+    <script type="text/javascript" src="/votes/wx_vote_wxshare.js"></script>
+
+    <script src="/votes/jquery-2.1.3.min.js" type="text/javascript"></script>
+    <script src="/votes/app.js" type="text/javascript"></script>
+    <script src="/votes/jquery.masonry.min.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="/votes/idangerous.swiper-2.1.min.js"></script>
+    <link rel="stylesheet" href="/votes/idangerous.swiper.css">
+    <link type="text/css" rel="stylesheet" href="/votes/pagination.css">
+    <script src="/votes/mediaelement-and-player.min.js"></script>
+    <link rel="stylesheet" href="/votes/videostyle.css" media="screen">
+    <link href="/votes/weui1.0.1.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/votes/newindex.css">
+    <link rel="stylesheet" href="/css/main-votes.css">
+    
+    <style>
+        /*
+	Bad practise to use inline styles but good place to show you as an example
+	*/
+        .swiper-scrollbar {
+            width: 100%;
+            height: 4px;
+            border-radius: 10px;
+            position: absolute;
+            left: 0;
+            bottom: 2px;
+            -ms-touch-action: none;
+            background: none
+        }
+
+        .swiper-scrollbar-drag {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('video').mediaelementplayer({
+                alwaysShowControls: false,
+                videoVolume: 'horizontal',
+                features: ['playpause', 'progress', 'volume', 'fullscreen']
+            });
+        });
+    </script>
+
+    <style>
+        hcfy-result.__hcfy__result__loaded__.__hcfy__result__both__ {
+            border: 1px dotted
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+
+        <!--首页幻灯片-->
+        <%- include('components/swiper',{swiperData:[{image:'/votes/202212051009490981.jpg', url:''}]}); %>
+
+        <div class="m_head clearfix">
+            <%- include('partials/num_box'); %>
+            <%- include('partials/search'); %>
+        </div>
+    </header>
+    <%- body %>
+    <section>
+
+        <div class="pop" id="guanzhu" style="display:none;">
+            <div class="mengceng"></div>
+            <div class="pop_up" style=" top:10%;">
+                <p class="tit_p">如何参与投票</p>
+                <div class="tit_txt">”进入微信公众平台“rizhaodazhongwang”，投票！“进入公众平台点击活动页面进行投票！
+
+                    <p>
+                        <a href="https://mp.weixin.qq.com/s?__biz=MjM5Mjg5OTk2MQ==&amp;mid=2654510860&amp;idx=1&amp;sn=d984b50503040eee5deaa5684626cee2&amp;chksm=bd53091a8a24800cbf74f9995ab82b28fcb9cb59e1502c04ec150a00127d5f207aa87ed49bdb&amp;token=301068782&amp;lang=zh_CN#rd"
+                            class="gz_btn">详细了解参与方法</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <!-- 投票结果弹框-->
+        <%- include('components/voting-result'); %>
+        
+        <div class="share_overmask" style="display: none;">
+            <div class="share_arrow"></div>
+            <div class="share_words"></div>
+        </div>
+        <div class="pop" id="validata" style="display:none;">
+            <div class="mengceng"></div>
+            <div class="pop_up" style="width:310px;">
+                <span class="closed close_pop_up">&nbsp;</span>
+                <script src="/votes/get.php" type="text/javascript" id="validatjs"></script>
+
+            </div>
+        </div>
+        <!-- 验证码 -->
+        <%- include('components/license_code'); %>
+    </section>
+    <link rel="stylesheet" type="text/css" href="/votes/daohang.css">
+    <%- include('partials/bot_main'); %>
+
+    <%- include('components/wx_ok_dialog', {message: "返回错误.."}); %>
+
+    <%- include('components/wx_toast', {message: "投票中请稍后..."}); %>
+    <script type="text/javascript">
+        function dialog2(msg) {
+            $("#dialog2 .weui-dialog__bd").html(msg);
+            $("#dialog2").show();
+        }
+        function hidemod(boxid) {
+            $("#" + boxid).hide();
+        }
+        function loadingToast(msg) {
+            $("#loadingToast .weui-toast__content").html(msg);
+            $("#loadingToast").show();
+        }
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#toupiaook").on('click', function () {
+                window.location.href = "";
+            });
+        });
+        /*切换验证码*/
+        function ToggleCode(obj, codeurl) {
+            $(obj).children("img").eq(0).attr("src", codeurl + "?time=" + Math.random());
+            return false;
+        }
+        function hideBox() {
+            $("#voting").hide();
+            $("#dddc-win-bg").addClass('box_hide');
+        }
+        $('.ico_1').on('click', function () {
+            location.href = "/vote?id=5865";
+        });
+
+        $('.ico_2').on('click', function () {
+            location.href = "/vote/vote-rank?id=5865";
+        });
+
+        $('.ico_3').on('click', function () {
+            location.href = "/vote/signup?id=5865";
+        });
+
+        $('.ico_4').on('click', function () {
+            location.href = "/vote/vote-rule?id=5865";
+        });
+
+
+        $('.fenxaing').on('click', function () {
+            $(".share_overmask").show()
+        });
+
+    </script>
+    :
+    <script type="text/javascript">
+        $(function () {
+            $('.vote').on('click', function (e) {
+                e.preventDefault();
+                var self = $(e.target).closest('.vote');
+                loadingToast("投票中,请稍后");
+                console.log("vote click")
+                $.ajax({
+                    type: "POST",
+                    url: "/vote/zhuli",
+                    cache: false,
+                    dataType: 'json',
+                    data: {
+                        id: '1001',
+                        qiyihash: 'tlD1qI',
+                        formhash: '',
+                        action: 'ticket'
+                    },
+                    success: function (d) {
+                        hidemod("loadingToast");
+                        if (d.success == 1) {
+                            $("#v" + self.data('tid')).html(parseInt($("#v" + self.data('tid')).html()) + 1);
+                            $('#voting').show();
+                            $('#voting_title').html(d.title);
+                            $('#voting_content').html(d.msg);
+                            setTimeout(function () {
+                                $('#voting').hide();
+                            }, 2000);
+                        } else if (d.success == -1) {
+                            setTimeout(function () { document.location.href = 'https://mp.weixin.qq.com/s?__biz=MjM5Mjg5OTk2MQ==&mid=2654510860&idx=1&sn=d984b50503040eee5deaa5684626cee2&chksm=bd53091a8a24800cbf74f9995ab82b28fcb9cb59e1502c04ec150a00127d5f207aa87ed49bdb&token=301068782&lang=zh_CN#rd'; }, 1);
+
+                        } else if (d.success == 2) {
+                            $("#v" + self.data('tid')).html(parseInt($("#v" + self.data('tid')).html()) + 1);
+                            $('#voting').show();
+                            $('#voting_title').html(d.title);
+                            $('#voting_content').html(d.msg);
+                            $(".dialog_box").removeClass('box_hide');
+                            setTimeout(function () {
+                                $('#voting').hide();
+                            }, 3000);
+                        } else if (d.success == -2) {
+                            $('#voting').show();
+                            $('#voting_title').html(d.title);
+                            $('#voting_content').html(d.msg);
+                            setTimeout(function () { window.location.href = d.url; }, 1888);
+                        } else if (d.success == 3) {
+                            $("#v" + self.data('tid')).html(parseInt($("#v" + self.data('tid')).html()) + 1);
+                            $('#voting').show();
+                            $('#voting_title').html(d.title);
+                            $('#voting_content').html(d.msg);
+                            setTimeout(function () {
+                                document.location.href = d.url;
+                            }, 1000);
+                        } else {
+                            $('#voting').show();
+                            $('#voting_title').html(d.title);
+                            $('#voting_content').html(d.msg);
+                            setTimeout(function () {
+                                $('#voting').hide();
+                            }, 3000);
+                        }
+                    },
+                    error: function (err) {
+                        hidemod("loadingToast");
+                        dialog2("活动太火爆啦，请稍候重试！");
+                    }
+                });
+
+
+            });
+
+            /// 内容列表布局
+            /// masonry 库实现
+         
+            var $grid = $('#pageCon ul');
+            $grid.imagesLoaded(function () {
+                $grid.masonry({
+                 itemSelector: '.picCon'
+             });
+         });
+        });
+
+    </script>

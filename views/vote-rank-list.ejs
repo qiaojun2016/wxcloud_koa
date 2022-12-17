@@ -1,0 +1,64 @@
+<section class="content" style="background: #FFFFFF;">
+
+    <%- include('partials/rank_preview',{tab:3}); %>
+        <div id="pageCon" class="match_page masonry" style="padding-bottom: 50px">
+            <style>
+                table {
+                    width: 96%;
+                    border-collapse: collapse;
+                    border: 1px solid #CCFFFF;
+                    margin: 20px auto;
+                    color: #FFD0B6;
+                }
+
+                tr {
+                    height: 25px;
+                }
+
+                th {
+                    padding: 1px 5px;
+                    width: 18%;
+                    border: 1px solid #CCFFFF;
+                }
+
+                td {
+                    padding: 1px 5px;
+                    border: 1px solid #CCFFFF;
+                    text-align: center;
+                }
+
+                dl dt {
+                    height: 28px;
+                }
+            </style>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th>编号</th>
+                        <th>姓名</th>
+                        <th>最终票数</th>
+                        <th>名次</th>
+                    </tr>
+                    <% rankList.forEach(function(user,index){ %>
+                        <tr>
+                            <td>
+                                <%= user.id%>
+                            </td>
+                            <td>
+                                <%= user.name%> | 看图简介
+                            </td>
+
+                            <td>
+                                <%= user.vote%>票
+                            </td>
+                            <td>第<b style="color:#229eb5;font-size:16px;">
+                                    <%=(index+1)%>
+                                </b>名</td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+
+        </div>
+</section>

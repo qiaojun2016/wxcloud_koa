@@ -1,0 +1,28 @@
+<ul class="list_box masonry clearfix" style="position: relative; text-align: left; ">
+
+    <% votesList.forEach(function(vote) {%>
+        <li class="picCon masonry-brick" style="display: inline; position: absolute; top: 0px; left: 0px;">
+            <div style="background:#FFFFFF;">
+                <a href="/vote-detail?id=5865&amp;pid=652419" class="img index-imgs-zuop"
+                    style="padding:0;background-color:#FFFFFF;"><img src="<%= vote.image %>"></a>
+
+                <div class="index-zuop-names" style="background-color:#334EB6;">
+                    <span style="color:#fff;font-size:14px;">编号：<%= vote.id%>号<br>姓名：<%= vote.name%>|点图看简介</span>
+                </div>
+                <div class="index-votes-nums">
+                    <a href="#" onclick="" class="vote" data-tid="652419" style="background-color:#0082D0;">
+                        <div>
+                            <img src="/votes/vt-num.png" alt="" style="width:1rem;height:1rem;display: inline-block;">
+                            <span style="color: #fff;display: inline-block;margin-top:2px;"><%= vote.vote%></span>
+                        </div>
+                        <div>
+                            <img src="/votes/votes.png"
+                                style="width:1rem;height:1rem;display: inline-block;margin-top:1px;">
+                            <span style="color: #fff;font-size:16px;display: inline-block;margin-top:-1px;">点赞</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </li>
+        <%});%>
+</ul>

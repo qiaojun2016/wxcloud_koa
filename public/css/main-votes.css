@@ -1,0 +1,267 @@
+body {
+    width: 100%;
+    background:#FFFFFF;
+    overflow:scroll;
+}
+
+.m_head .vote_daohang_box {
+    width: 88%;
+    position: relative;
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 2%;
+    white-space: nowrap;
+    text-align: center;
+    background: #FFFFFF;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.m_head .vote_daohang_box a {
+    display: inline-block;
+    width: 24%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.m_head .vote_daohang_box a img {
+    vertical-align: middle;
+}
+
+.m_head .daohang_box {
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1%;
+}
+
+.m_head .daohang_box a {
+    float: left;
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 23%;
+}
+
+.m_head .daohang_box a img {
+    width: 100%;
+}
+
+.m_head .num_box {
+    width: 96%;
+    position: relative;
+    background: #ffe89a;
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1%;
+    vertical-align: middle;
+}
+
+.m_head .num_box .join_us {
+    display: block;
+    width: 230px;
+    height: 45px;
+    margin: 25px auto;
+    background: #99D0FF;
+    border-bottom: 5px solid #a40000;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    font-size: 19px;
+    line-height: 45px;
+}
+
+.m_head .num_box .num_box_ul {
+    width: 100%;
+    line-height: 22px;
+    vertical-align: middle;
+}
+
+.m_head .num_box .num_box_ul li {
+    width: 33%;
+    float: left;
+    border-right: 1px solid #dea91a;
+    vertical-align: middle;
+}
+
+.m_head .num_box .num_box_ul li:last-child {
+    border: none;
+}
+
+.m_head .num_box .num_box_ul li span {
+    width: 100%;
+    display: block;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+.m_head .num_box .num_box_ul li span.text {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+.search {
+    width: 100%;
+    margin-top: 1px;
+    background: #FFFFFF;
+}
+
+.search #search_form {
+    width: 100%;
+}
+
+.search .search_con {
+    width: 96%;
+    background: #fff;
+    font-size: 1.5em;
+    text-align: center;
+    border: 1px solid #71c8cb;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1%;
+}
+
+.search .search_con .text_box {
+    display: block;
+    height: 100%;
+}
+
+.search .search_con .text_box #searchText {
+    background: none;
+    font-size: 14px;
+}
+
+.search .search_con .btn {
+    position: absolute;
+    right: 0;
+    float: right;
+    width: 75px;
+    height: 100%;
+    background-color: #71c8cb;
+    border-radius: 1px;
+    top: 0px;
+}
+
+.search .search_con .btn #searchBtn {
+    background: none;
+    color: #fff;
+}
+
+.search .search_con input {
+    width: 100%;
+    border: none;
+    height: 100%;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+    visibility: hidden;
+}
+
+.box_hide {
+    display: none;
+}
+
+.content_title {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    border-bottom-width: 1px;
+    border-bottom-color: #E7E7E7;
+    margin-top: 1px;
+    margin-bottom: 10px;
+}
+
+.content_title_main {
+    width: 90%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #EFEFEF;
+    border-radius: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #FFF;
+    padding: 1%;
+}
+
+.content_title_main span {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #F51425;
+}
+
+.content_box {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 5px;
+    margin-top: -10px;
+}
+
+.content_box_main {
+    width: 90%;
+    min-height: 80px;
+    border: 1px solid #EFEFEF;
+    border-radius: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #FFF;
+    padding: 1%;
+}
+
+.content_box_main img {
+    max-width: 100%;
+}
+
+.tit_txt img {
+    clear: both;
+    display: block;
+    margin: auto;
+}
+
+.content .list_box li>div {
+    background-color: #334EB6;
+}
+
+
+
+
+
+.content .text_a {
+    width: 100%;
+    text-align: center;
+}
+
+.content .text_a a {
+    width: 30.5%;
+    margin: 0 auto;
+    background: #0082B6;
+    text-align: center;
+    color: #fff;
+    line-height: 35px;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.content .text_a a:nth-child(2),
+.content .text_a a:nth-child(3),
+.content .text_a a:nth-child(4) {
+    margin-left: 2%;
+}
+
+.content .text_a a.active {
+    background-color: #0068B6;
+}
