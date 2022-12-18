@@ -161,13 +161,13 @@
           const uploadFile = await compressedFile($userImage[0].files[0]);
           console.log(uploadFile)
           formData.append("userImage", uploadFile);
-          formData.append("userName", $userName.val());
+          formData.append("username", $userName.val());
           formData.append("phone", $phone.val());
-          formData.append("workplace", $workplace.val());
+          formData.append("company", $workplace.val());
           $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url: "/vote/join",
+            url: "/vote/vote-join",
             data: formData,
             processData: false,
             contentType: false,
@@ -247,8 +247,8 @@
         console.log('originalFile instanceof Blob', imageFile instanceof Blob); // true
         console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
         const options = {
-          maxSizeMB: .1,
-          maxWidthOrHeight: 300,
+          maxSizeMB: .2,
+          maxWidthOrHeight: 500,
           useWebWorker: true
         }
         try {

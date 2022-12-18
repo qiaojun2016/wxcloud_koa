@@ -1,6 +1,8 @@
 const Router = require("koa-router");
 const router = new Router();
 const faker = require("../faker");
+const { uploadFile } = require("../cos/cos-init");
+const { Vote } = require("../db");
 
 /// 排名
 router.get("/vote/vote-rank", async (ctx) => {
@@ -14,11 +16,13 @@ router.get("/vote/vote-rank", async (ctx) => {
 
 /// 最新参与
 router.get("/vote", async (ctx) => {
-  const votesList = faker.votesList;
+  var votes = await Vote.findAll()
+  console.log("All users:", JSON.stringify(votes, null, 2));
+  const votesList = votes;
   // 获取最新的列表
   await ctx.render("vote-latest", {
     layout: "vote-page",
-    votesList,
+    votesList
   });
 });
 /// 排名列表
@@ -54,7 +58,10 @@ router.get("/vote/vote-join", async (ctx) => {
 });
 
 router.post("/vote/vote-join", async (ctx) => {
-  /// 防止 dos 攻击?
+  const {username, company, phone}  = ctx.request.body;
+  var file = ctx.request.files.userImage;
+  console.log(file);
+  await Vote.create({ username, company , phone, image: `/${file.path}`});
   ctx.body = { success: 1 };
 });
 

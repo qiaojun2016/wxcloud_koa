@@ -7,6 +7,8 @@ const render = require("koa-ejs");
 const fs = require("fs");
 const path = require("path");
 const { init: initDB, Counter } = require("./db");
+const {initcos} = require('./cos/cos-init')
+const mount = require('koa-mount');
 
 const router = new Router();
 
@@ -65,13 +67,11 @@ const koaBody = bodyParser({
   multipart: true,
 });
 /// 设置中间件
-app.use(serve(path.join(__dirname, "/public")));
-app.use(serve("./upload"));
+app.use(serve('./public'));
 app
   .use(logger())
   .use(koaBody)
-  .use(serve(path.join(__dirname, "/public")))
-  .use(serve("./upload"))
+  .use(mount("/uploads", serve('./uploads')))
   .use(router.routes())
   .use(require('./routes/vote').routes())
   .use(router.allowedMethods());
@@ -90,6 +90,7 @@ render(app, {
 const port = process.env.PORT || 80;
 async function bootstrap() {
   //await initDB();
+ //await initcos();
   app.listen(port, () => {
     console.log("启动成功", port);
   });
